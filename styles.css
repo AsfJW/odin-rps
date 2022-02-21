@@ -21,6 +21,8 @@
 }
 
 #playerScore {
+    text-align: center;
+    line-height: 30px;
     border: grey;
     border-style: solid;
     width: 30px;
@@ -31,6 +33,8 @@
 }
 
 #computerScore {
+    text-align: center;
+    line-height: 30px;
     border: grey;
     border-style: solid;
     width: 30px;

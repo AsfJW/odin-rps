@@ -7,6 +7,9 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
+
+	comment1.textContent = `You picked ${playerSelection}. Computer picked ${computerSelection}.`;
+
 	if (playerSelection.toLowerCase() === 'rock' && computerSelection === 'paper') {
 		return 'You lose!'
 	}
@@ -31,73 +34,88 @@ function playRound(playerSelection, computerSelection) {
 const pScore = document.querySelector('#playerScore');
 const cScore = document.querySelector('#computerScore');
 
+const comment1 = document.querySelector('#comment1');
+const comment2 = document.querySelector('#comment2');
+
 
 const btns = document.querySelectorAll('button');
 
 btns.forEach((button) => {
+
 	button.addEventListener('click', () => {
+		
 		computerSelection = computerPlay();
-		console.log(playerCount);
 		if (button.id === 'rock') {
 			playerSelection = 'rock';
 			let round = playRound(playerSelection, computerSelection);
 			if (round === 'You win!') {
-				pScore.textContent = `${playerCount++}`;
+				playerCount++;
+				pScore.textContent = `${playerCount}`;
+				if (playerCount === 5) {
+					alert(`You are the winner, ${playerCount} to ${computerCount}!`);
+					location.reload();
+				
+				}
 			}
 			else if (round === 'You lose!') {
-				cScore.textContent = `${computerCount++}`;
+				computerCount++;
+				cScore.textContent = `${computerCount}`;
+				if (computerCount === 5) {
+					alert(`You lose, ${playerCount} to ${computerCount}.`);
+					location.reload();
+				}				
 			}
+			comment2.textContent = `${round}`;
 		}
 		else if (button.id === 'paper') {
 			playerSelection = 'paper';
 			let round = playRound(playerSelection, computerSelection);
 			if (round === 'You win!') {
-				playerCount++;
+				playerCount++
+				pScore.textContent = `${playerCount}`;
+				if (playerCount === 5) {
+					alert(`You are the winner, ${playerCount} to ${computerCount}!`);
+					location.reload();
+				
+				}
 			}
 			else if (round === 'You lose!') {
 				computerCount++;
+				cScore.textContent = `${computerCount}`;
+				if (computerCount === 5) {
+					alert(`You lose, ${playerCount} to ${computerCount}.`);
+					location.reload();
+				}
 			}
+			comment2.textContent = `${round}`;
 		}
 		else if (button.id === 'scissors') {
 			playerSelection = 'scissors';
 			let round = playRound(playerSelection, computerSelection);
 			if (round === 'You win!') {
-				playerCount++;
+				playerCount++
+				pScore.textContent = `${playerCount}`;
+				if (playerCount === 5) {
+					alert(`You are the winner, ${playerCount} to ${computerCount}!`);
+					location.reload();
+				
+				}
 			}
 			else if (round === 'You lose!') {
 				computerCount++;
+				cScore.textContent = `${computerCount}`;
+				if (computerCount === 5) {
+					alert(`You lose, ${playerCount} to ${computerCount}.`);
+					location.reload();
+				}
 			}
+			comment2.textContent = `${round}`;
 		}
 	})
 })
 
 
-// function game() {	
-// 		let playerSelection = prompt('What\'s your choice?');
-// 		const computerSelection = computerPlay();
-// 		console.log('Computer says: ' + computerSelection);
-// 		console.log('You picked: ' + playerSelection);	
-// 		console.log(playRound(playerSelection, computerSelection));
-// 		if (playRound(playerSelection, computerSelection) === 'You win!') {
-// 			playerCount++
-// 		}
-// 		else if (playRound(playerSelection, computerSelection) === 'You lose!') {
-// 			computerCount++
-// 		};
-// 		console.log('Score\n' + 'You: ' + playerCount + ' ' + 'Computer: ' +  computerCount);
-// }
 
-// for (let i = 0; i < 5; i++) {
-// 	game();
-// 	if (i == 4) {
-// 		if (playerCount != computerCount) {
-// 		let winner = playerCount > computerCount ? 'Player' : 'Computer';
-// 		alert('Winner is: ' + winner);
-// 		}
-// 		else alert('It\s a tie!');
-// 	}
-
-// }
 
 
 
