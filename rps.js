@@ -40,6 +40,42 @@ const comment2 = document.querySelector('#comment2');
 
 const btns = document.querySelectorAll('button');
 
+const modal = document.getElementById('winnerAlert');
+const modalContent = document.querySelector('#winner');
+
+// Click anywhere to close modal and reload page
+window.onclick = function(event) {
+	if (event.target == modal) {
+	  modal.style.display = "none";
+	  location.reload();
+	}
+  }
+
+
+function getWinner() {
+	let round = playRound(playerSelection, computerSelection);
+			if (round === 'You win!') {
+				playerCount++;
+				pScore.textContent = `${playerCount}`;
+				if (playerCount === 5) {
+					modal.style.display = 'block';
+					modalContent.textContent = `You are the winner, ${playerCount} to ${computerCount}!
+					Congratulations!`;
+					
+				}
+			}
+			else if (round === 'You lose!') {
+				computerCount++;
+				cScore.textContent = `${computerCount}`;
+				if (computerCount === 5) {
+					modal.style.display = 'block';
+					modalContent.textContent = `You lose, ${playerCount} to ${computerCount}.
+					Better luck next time!`;
+				}				
+			}
+			comment2.textContent = `${round}`;
+}
+
 btns.forEach((button) => {
 
 	button.addEventListener('click', () => {
@@ -47,69 +83,15 @@ btns.forEach((button) => {
 		computerSelection = computerPlay();
 		if (button.id === 'rock') {
 			playerSelection = 'rock';
-			let round = playRound(playerSelection, computerSelection);
-			if (round === 'You win!') {
-				playerCount++;
-				pScore.textContent = `${playerCount}`;
-				if (playerCount === 5) {
-					alert(`You are the winner, ${playerCount} to ${computerCount}!`);
-					location.reload();
-				
-				}
-			}
-			else if (round === 'You lose!') {
-				computerCount++;
-				cScore.textContent = `${computerCount}`;
-				if (computerCount === 5) {
-					alert(`You lose, ${playerCount} to ${computerCount}.`);
-					location.reload();
-				}				
-			}
-			comment2.textContent = `${round}`;
+			getWinner();
 		}
 		else if (button.id === 'paper') {
 			playerSelection = 'paper';
-			let round = playRound(playerSelection, computerSelection);
-			if (round === 'You win!') {
-				playerCount++
-				pScore.textContent = `${playerCount}`;
-				if (playerCount === 5) {
-					alert(`You are the winner, ${playerCount} to ${computerCount}!`);
-					location.reload();
-				
-				}
-			}
-			else if (round === 'You lose!') {
-				computerCount++;
-				cScore.textContent = `${computerCount}`;
-				if (computerCount === 5) {
-					alert(`You lose, ${playerCount} to ${computerCount}.`);
-					location.reload();
-				}
-			}
-			comment2.textContent = `${round}`;
+			getWinner();
 		}
 		else if (button.id === 'scissors') {
 			playerSelection = 'scissors';
-			let round = playRound(playerSelection, computerSelection);
-			if (round === 'You win!') {
-				playerCount++
-				pScore.textContent = `${playerCount}`;
-				if (playerCount === 5) {
-					alert(`You are the winner, ${playerCount} to ${computerCount}!`);
-					location.reload();
-				
-				}
-			}
-			else if (round === 'You lose!') {
-				computerCount++;
-				cScore.textContent = `${computerCount}`;
-				if (computerCount === 5) {
-					alert(`You lose, ${playerCount} to ${computerCount}.`);
-					location.reload();
-				}
-			}
-			comment2.textContent = `${round}`;
+			getWinner();
 		}
 	})
 })
